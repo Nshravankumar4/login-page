@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="/logout" class="logout">Logout</a>
+  </div>
+  <div class="welcome-container">
+    <h1>Welcome, <span id="username"></span>!</h1>
+  </div>
+  <div class="content">
+    <ul id="user-data"></ul>
+  </div>
+  <script>
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      document.getElementById('username').innerText = user.name;
+      const userDataList = document.getElementById('user-data');
+      
+      const phoneLi = document.createElement('li');
+      phoneLi.innerText = `Phone Number: ${user.phone}`;
+      userDataList.appendChild(phoneLi);
+
+      const surnameLi = document.createElement('li');
+      surnameLi.innerText = `Name: ${user.surname}`;
+      userDataList.appendChild(surnameLi);
+    } else {
+      window.location.href = '/';
+    }
+  </script>
+</body>
+</html>
